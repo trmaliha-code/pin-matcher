@@ -2,7 +2,6 @@
 var generatorBox = document.querySelector(".pin-generator-box");
 var inputBox = document.querySelector(".pin-input-box");
 
-
 // Pin generate section
 var number = 0;
 
@@ -21,7 +20,6 @@ document.querySelector(".generate-btn").addEventListener('click', function(){
     generatorBox.value = number;
 });
 
-
 // Pin user input section
 var digitsConcat = "";
 
@@ -32,7 +30,7 @@ for(var i = 0; i < buttons.length; i++)
     buttons[i].addEventListener('click', function(){
         if(this.id == "C")
         {
-            digitsConcat = ""
+            digitsConcat = "";
             inputBox.value = digitsConcat;
         }
         else if(this.id == "<")
@@ -48,8 +46,9 @@ for(var i = 0; i < buttons.length; i++)
     });   
 }
 
-
 // Pin matching section
+var i = 2;
+
 document.querySelector(".submit-btn").addEventListener('click', function(){
     if(generatorBox.value == inputBox.value)
     {
@@ -58,7 +57,15 @@ document.querySelector(".submit-btn").addEventListener('click', function(){
     }
     else
     {
+        if(i == 0)
+        {
+            // Button disabled after 3 tries 
+            document.querySelector(".submit-btn").disabled = true;
+        }
         document.getElementById("not-matched").style.display = "block";
         document.getElementById("matched").style.display = "none";
+
+        document.getElementById("try-count").innerText = i;
+        i--;
     }
 });
